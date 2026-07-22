@@ -5,3 +5,4 @@ En esta charla se habla de muchas cosas comentadas en el [[ATP]] de Compute Mana
 ![[Pasted image 20260720170051.png]]
 ![[Pasted image 20260720170553.png]]
 ![[Pasted image 20260720170805.png]]
+![[Pasted image 20260722103514.png]]
