@@ -31,4 +31,5 @@ Los servidores ML(Torre) y DL(Servidores de rack) ofrecen una base para platafor
 
 Los servidores de la linea HPE ProLiant ML son la opción ideal para lugares remotos y sucursales pequeñas, también para empresas en crecimiento que necesitan servidores de performance empresarial sin la complejidad de algo a gran escala. Con la nueva generación 12, estos servidores torres entregan un mejor poder de computo, mejor eficiencia de energía y utiliza las ultimas herramientas disponibles para poder liderar con las cargas de trabajo de hoy en día.
 
-- ML110: Compacta pero poderosa, es perfecta para pequeños negocios y 
+- ML110: Compacta pero poderosa, es perfecta para pequeños negocios y para el despliegue en el borde
+- ML350: 
