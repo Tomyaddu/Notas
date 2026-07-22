@@ -35,3 +35,6 @@ Los servidores de la linea HPE ProLiant ML son la opción ideal para lugares rem
 - ML350: Es altamente expandible a comparación con la ML110, esta pensada para trabajos mas pesados como virtualización, base de datos o colaborar con otras plataformas  
 
 
+###### HPE ProLiant DL
+
+Los servidores de la linea HPE ProLiant DL son seguros, versatiles y rack-optimized 
