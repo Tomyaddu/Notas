@@ -23,4 +23,13 @@ Puntos clave:
 - **Kit opcional iLO/M.2/puerto serie**: el cliente puede elegir el componente que mejor se ajuste a sus necesidades, por ejemplo, usar una unidad M.2 para un arranque más rápido del sistema operativo.
 
 #### HPE ProLiant ML y DL Family
+
 ![[Pasted image 20260722115019.png]]
+Los servidores ML(Torre) y DL(Servidores de rack) ofrecen una base para plataformas de virtualización y base de datos. La linea de HPE ProLiant DL incluye modelos que soportan GPUs poderosas  haciéndolas ideales para AI/ML inference. Ambas lineas (DL y ML) incluyen modelos optimizados para edge computing.
+
+###### HPE ProLiant ML
+
+Los servidores de la linea HPE ProLiant ML son la opción ideal para lugares remotos y sucursales pequeñas, también para empresas en crecimiento que necesitan servidores de performance empresarial sin la complejidad de algo a gran escala. Con la nueva generación 12, estos servidores torres entregan un mejor poder de computo, mejor eficiencia de energía y utiliza las ultimas herramientas disponibles para poder liderar con las cargas de trabajo de hoy en día.
+
+- ML110:
+
