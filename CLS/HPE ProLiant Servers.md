@@ -29,7 +29,7 @@ Los servidores ML(Torre) y DL(Servidores de rack) ofrecen una base para platafor
 
 ###### HPE ProLiant ML
 
-Los servidores de la linea HPE ProLiant ML son la opción ideal para lugares remotos y sucursales pequeñas, también para empresas en crecimiento que necesitan servidores de performance empresarial sin la complejidad de algo a gran escala. Con la nueva generación 12, estos servidores torres entregan un mejor poder de computo, mejor eficiencia de energía y utiliza las ultimas herramientas disponibles para poder liderar con las cargas de trabajo de hoy en día.
+Los servidores de la línea HPE ProLiant ML son la opción ideal para lugares remotos y sucursales pequeñas, también para empresas en crecimiento que necesitan servidores de performance empresarial sin la complejidad de algo a gran escala. Con la nueva generación 12, estos servidores torres entregan un mejor poder de computo, mejor eficiencia de energía y utiliza las ultimas herramientas disponibles para poder liderar con las cargas de trabajo de hoy en día.
 
 - ML110: Compacta pero poderosa, es perfecta para pequeños negocios y para el despliegue en el borde
 - ML350: Es altamente expandible a comparación con la ML110, esta pensada para trabajos mas pesados como virtualización, base de datos o colaborar con otras plataformas  
@@ -37,4 +37,22 @@ Los servidores de la linea HPE ProLiant ML son la opción ideal para lugares rem
 
 ###### HPE ProLiant DL
 
-Los servidores de la linea HPE ProLiant DL son seguros, versatiles y rack-optimized pensados para entregar el balance ideal entre potencia, capacodad y manejabilidad 
+Los servidores de la línea HPE ProLiant DL son seguros, versátiles y rack-optimized pensados para entregar el balance ideal entre potencia, capacidad y manejabilidad para los data centers modernos. Están diseñados para cumplir múltiples funciones, ya sea para cargas de virtualización y base de datos hasta IA y analíticas, ofrecen configuraciones escalables y herramientas avanzadas de automatización. 
+
+
+#### HPE Synergy
+
+![[Pasted image 20260722133357.png]]
+
+HPE Synergy es una plataforma de infraestructura blade componible diseñada para soportar cargas de trabajo tradicionales, virtualizadas y de nube híbrida. Integra en un único sistema los recursos de cómputo, almacenamiento y red, permitiendo configurarlos dinámicamente según las necesidades de cada aplicación.
+
+Su administración se realiza principalmente mediante HPE Synergy Composer con HPE OneView, que ofrece una vista centralizada para gestionar y asignar recursos desde pools flexibles. También permite administrar módulos de cómputo mediante HPE iLO y monitorearlos desde la nube con HPE Compute Ops Management.
+
+Gracias a su diseño modular y flexible, HPE Synergy es ideal para entornos de nube privada e híbrida, soportando máquinas virtuales, cargas bare-metal, contenedores y escenarios multi-tenant.
+
+#### HPE ProLiant Compute Gen12 positioning
+
+![[Pasted image 20260722134444.png]]
+La familia HPE ProLiant Compute Gen12 ofrece servidores optimizados para distintos tipos de cargas de trabajo, incorporando procesadores de última generación. Incluye modelos especializados para IA con aceleración GPU, servidores enfocados en eficiencia energética y reducción de costos (TCO), equipos de alta densidad** para espacios reducidos y servidores torre para pymes y entornos edge.
+
+Además, HPE ofrece soluciones específicas para big data, analítica, virtualización y cargas intensivas, incluyendo servidores con procesadores **AMD EPYC**. Para clientes que prefieren formato blade, se puede optar por **HPE Synergy**.

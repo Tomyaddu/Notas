@@ -97,3 +97,5 @@ Vsphere es el "controlador" de las maquinas virtuales, se encarga de que el uso 
 HCI significa Hyper Converge Infrastructure, es el "controlador" de la infraestructura (computación, almacenamiento, redes y virtualización), y la une virtualmente. Esta solución nos permite que tengamos una "nube privada", y agilicemos todas las tareas de virtualización, sin necesidad de instalar hardware en ningún lado (Obviando que necesitamos el hardware del servidor para poder correr todo). 
 
 AI/ML inference es la ejecución practica donde un modelo de IA entrenado aprende patrones para tomar decisiones, hacer predicciones o generar resultados en nueva data nunca antes vista. 
+
+Cuando en los servidores nos hablan de xU y xP, significa que por ejemplo si tiene 4U 2P tiene 4 unidades de rack (que es la altura física), y los P son los procesadores que soporta el servidor (en este caso 2 procesadores, ósea los sockets).
