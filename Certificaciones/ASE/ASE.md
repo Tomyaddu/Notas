@@ -7,9 +7,11 @@
 
 - [[TekTalk Introducing HPE ProLiant Compute Gen12 – Engineered for the hybrid world]]
 - [[TekTalk HPE Compute Management Portfolio Strategy and latest updates]]
-- 
 
 #### Competency 
+
+- [[HPE Synergy Components]]
+- 
 
 ### **[AI Inferencing](https://techpro.hpe.com/learningPath.aspx?Family=AIINF)**
 
