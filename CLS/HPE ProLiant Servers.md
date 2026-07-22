@@ -50,9 +50,38 @@ Su administración se realiza principalmente mediante HPE Synergy Composer con H
 
 Gracias a su diseño modular y flexible, HPE Synergy es ideal para entornos de nube privada e híbrida, soportando máquinas virtuales, cargas bare-metal, contenedores y escenarios multi-tenant.
 
-#### HPE ProLiant Compute Gen12 positioning
+#### HPE ProLiant Compute Gen12 Positioning
 
 ![[Pasted image 20260722134444.png]]
-La familia HPE ProLiant Compute Gen12 ofrece servidores optimizados para distintos tipos de cargas de trabajo, incorporando procesadores de última generación. Incluye modelos especializados para IA con aceleración GPU, servidores enfocados en eficiencia energética y reducción de costos (TCO), equipos de alta densidad** para espacios reducidos y servidores torre para pymes y entornos edge.
+La familia HPE ProLiant Compute Gen12 ofrece servidores optimizados para distintos tipos de cargas de trabajo, incorporando procesadores de última generación. Incluye modelos especializados para IA con aceleración GPU, servidores enfocados en eficiencia energética y reducción de costos (TCO), equipos de alta densidad para espacios reducidos y servidores torre para pymes y entornos edge. Usan Intel Xeon 6 y AMD Zen 5 y 5C
 
-Además, HPE ofrece soluciones específicas para big data, analítica, virtualización y cargas intensivas, incluyendo servidores con procesadores **AMD EPYC**. Para clientes que prefieren formato blade, se puede optar por **HPE Synergy**.
+Además, HPE ofrece soluciones específicas para big data, analítica, virtualización y cargas intensivas, incluyendo servidores con procesadores AMD EPYC. Para clientes que prefieren formato blade, se puede optar por HPE Synergy.
+
+#### HPE ProLiant Gen11 Positioning
+
+![[Pasted image 20260722140114.png]]
+La familia HPE ProLiant Gen11 incorpora procesadores Intel Xeon de 4.ª y 5.ª generación y AMD EPYC de 4.ª generación*, ofreciendo buen rendimiento para cargas de trabajo comunes a un costo menor que los modelos más recientes.
+
+Incluye servidores optimizados para edge computing, machine learning, virtualización, nube híbrida y contenedores, con modelos de alta densidad en formatos 1U y 2U. También ofrece servidores blade, equipos optimizados para GPU, soluciones para big data y analítica como el DL560 Gen11, y servidores enfocados en almacenamiento y nube.
+
+### Other HPE compute solutions
+
+HPE provee soluciones de cómputo especializadas en data, borde, computación de gran performance (HPC High Performance Computing) y aplicaciones escalables. Esta sección nos enseñara estas soluciones. También veremos una introducción a soluciones HPE Hyperconverged infrastructure (HCI).
+
+#### HPE density and edge-optimized portfolios 
+
+![[Pasted image 20260722141344.png]]
+
+
+###### HPE Alletra Storage Servers
+
+Los HPE Alletra Storage Servers son servidores optimizados para alta densidad y cargas intensivas de datos, utilizados para analítica, lagos de datos de Machine Learning, bases NoSQL, archivado y almacenamiento de objetos o archivos de terceros.
+
+###### HPE Edgeline
+
+Los sistemas HPE Edgeline llevan capacidades empresariales de cómputo, almacenamiento y gestión de datos al edge, mediante equipos compactos y resistentes para entornos exigentes. Están diseñados para analítica en tiempo real, inteligencia artificial e infraestructura industrial, con administración mediante HPE iLO, GreenLake y OneView, permitiendo integrar entornos edge, core y cloud.
+
+
+#### HPE High Performance Computing (HPC)
+
+![[Pasted image 20260722142414.png]]
