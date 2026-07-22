@@ -37,4 +37,4 @@ Los servidores de la linea HPE ProLiant ML son la opción ideal para lugares rem
 
 ###### HPE ProLiant DL
 
-Los servidores de la linea HPE ProLiant DL son seguros, versatiles y rack-optimized 
+Los servidores de la linea HPE ProLiant DL son seguros, versatiles y rack-optimized pensados para entregar el balance ideal entre potencia, capacodad y manejabilidad 
