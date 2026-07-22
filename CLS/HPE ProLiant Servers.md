@@ -85,3 +85,15 @@ Los sistemas HPE Edgeline llevan capacidades empresariales de cómputo, almacena
 #### HPE High Performance Computing (HPC)
 
 ![[Pasted image 20260722142414.png]]
+
+###### HPE ProLiant XD and HPE Cray XD
+
+Las familias HPE ProLiant XD y HPE Cray XD son plataformas de alta densidad diseñadas para HPC (High Performance Computing) e Inteligencia Artificial, ofreciendo gran escalabilidad y rendimiento. Soportan procesadores con muchos núcleos, GPUs avanzadas, interconexiones de alta velocidad y refrigeración por aire o líquido, siendo ideales para entrenamiento de IA e investigación científica.
+
+###### HPE Cray EX
+
+Por su parte, HPE Cray EX representa la línea de supercomputadoras de HPE. Es una plataforma blade con refrigeración líquida, diseñada para ofrecer el máximo rendimiento, escalabilidad y densidad en cargas de simulación, modelado, IA y analítica, y forma parte de varias de las supercomputadoras más potentes del mundo.
+
+
+#### HPE Scale-up Server Portfolio
+

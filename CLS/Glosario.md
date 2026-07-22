@@ -99,3 +99,5 @@ HCI significa Hyper Converge Infrastructure, es el "controlador" de la infraestr
 AI/ML inference es la ejecución practica donde un modelo de IA entrenado aprende patrones para tomar decisiones, hacer predicciones o generar resultados en nueva data nunca antes vista. 
 
 Cuando en los servidores nos hablan de xU y xP, significa que por ejemplo si tiene 4U 2P tiene 4 unidades de rack (que es la altura física), y los P son los procesadores que soporta el servidor (en este caso 2 procesadores, ósea los sockets).
+
+hyperconverged infrastructure (HCI) es el sistema que unifica cómputo, almacenamiento y redes en un solo equipo. Mientras tanto el dHCI, separa al cómputo y al almacenamiento en distintas cajas, pero se operan por el mismo software central.
