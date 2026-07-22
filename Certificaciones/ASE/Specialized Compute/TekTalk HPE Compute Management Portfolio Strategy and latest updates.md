@@ -1,0 +1,7 @@
+En esta charla se habla de muchas cosas comentadas en el [[ATP]] de Compute Management, esta es la agenda y es muy parecida a todo lo que se vio en Compute Management, si hay dudas es bueno revisar material anterior como [[Effortless Compute Management at Scale]]![[Pasted image 20260720155242.png]]
+![[Pasted image 20260720155337.png]]
+![[Pasted image 20260720160720.png]]
+![[Pasted image 20260720161740.png]]
+![[Pasted image 20260720170051.png]]
+![[Pasted image 20260720170553.png]]
+![[Pasted image 20260720170805.png]]

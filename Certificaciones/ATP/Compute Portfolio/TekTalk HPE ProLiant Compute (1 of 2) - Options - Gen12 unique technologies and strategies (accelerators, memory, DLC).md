@@ -1,0 +1,76 @@
+Nos hace entran a ver primero el mercado y como es su estado actual, nos cita a "McKinsey and Compañy" el cual nos dice que todo lo que no este conectado a la IA va a ser considerado obsoleto o inefectivo, a lo que nos dicen que ellos creen eso, ya que la IA a crecido exponencialmente y nos muestra el impacto que tiene la IA a lo largo de diferentes industrias ![[Pasted image 20260706163903.png]]![[Pasted image 20260706164513.png]]
+Cuando hablamos de IA tenemos 2 manera de clasificarla, la IA clásica y la IA generativa, y no es una o la otra, es las 2 las que se usan. La IA clásica es para toma de decisiones y reconoce patrones para ayudarnos, en cambio la generativa es para crear códigos, contenidos, fotos, etc. Por esta razón una no reemplaza a la otra, si no que van en conjunto. Lo mas importante es que el GPU es la clave en el uso de la IA.![[Pasted image 20260706164057.png]]
+![[Pasted image 20260706164333.png]]
+Una mirada al mercado y como creció su uso en IA:![[Pasted image 20260706164600.png]]
+![[Pasted image 20260706164640.png]]
+Ahora pasa a hablar sobre las nuevas herramientas que tenemos en la generación 12, nos muestra los distintos GPU y las generaciones que lo soportan![[Pasted image 20260706164831.png]]
+![[Pasted image 20260706165614.png]]
+![[Pasted image 20260706165731.png]]
+![[Pasted image 20260706165939.png]]
+Comenta que hay muchas combinaciones de tarjetas, sistemas operativos y servers, y que claramente no pueden probar todas las combinaciones, por eso no ofrecen todas las tarjetas en todos los servidores/sistemas, solo prueban lo que es "mainstream" y ofrecen eso si funciona bien![[Pasted image 20260706170259.png]]
+![[Pasted image 20260706170326.png]]
+![[Pasted image 20260706170501.png]]
+![[Pasted image 20260706170542.png]]
+![[Pasted image 20260706170628.png]]
+![[Pasted image 20260706170702.png]]
+Nos comenta que esto puede estar desactualizado y que busquemos acá para la información mas actualizada:![[Pasted image 20260708091227.png]]
+Si necesitamos explorar alguna opción que no sea la recomendada, o que no este chequeada existe un grupo en HPE que se llama "CSG" Custom Solution Group, en donde ellos chequea la solución especial que armamos y nos dicen si es compatible la solución con el problema o no![[Pasted image 20260708091834.png]]
+
+---
+
+Ahora en esta sección nos va a hablar sobre los CPUs, va empezar con los CPUs de NVIDIA que son con los que trabajan en el 90% de los casos, vamos a pasar a través de 3 secciones "High-End", "Med-Range" y "Low-End" GPUs. Esta primer parte habla sobre la parte de "High-End" CPUs:![[Pasted image 20260708092148.png]]
+Nos comenta que tenemos 2 maneras de usar la GPU, la primera es "Multi-Instance GPUs" (MIG), la cual nos subdivide la GPU, para poder usar en distintas instancias. La siguiente es lo contrario, la cual es "NVLink", la cual hace que para una carga de trabajo pesada las GPUs puedan comunicarse entre ellas y hablar en conjunto para poder resolver un problema.![[Pasted image 20260708093057.png]]
+![[Pasted image 20260708093115.png]]
+Mid-Range" CPUs:![[Pasted image 20260708093350.png]]
+Low-End CPUs:![[Pasted image 20260708093451.png]]
+Cabe aclarar que esto puede estar desactualizado o incompleto, nos comenta que en Q3 de 2025 (Ya paso) van a estar probando con mas GPUs, están son algunas de las GPUs que hasta el momento no estaban o estaban investigando:![[Pasted image 20260708093628.png]]
+Nos da un listado de cuales son las mejores soluciones para problemas de IA generales, marcados con cantidad de estres 1 (Good), 2 (Better) o 3 (Best):![[Pasted image 20260708093758.png]]
+![[Pasted image 20260708093816.png]]
+
+---
+
+Esta siguiente sección va a hablar sobre memoria, empieza la presentación dándonos una actualización sobre el mercado de las memorias y un vistazo al mercado de las memorias. Tambien nos da un vistazo sobre el uso de las memorias en la industria, que tipo de memoria se usan, que frecuencias y que generación. Lo que nos quiere mostrar con esto es la tendencia de uso en la industria y donde esta el "Sweet Point" ![[Pasted image 20260708094130.png]]
+![[Pasted image 20260708094404.png]]
+Nos recuerda sobra la escasez que hay en memorias y nos comenta que hay nuevas tecnologías la cual le gustaría repasar, remarca especialmente la tecnología "MRDIMM" ![[Pasted image 20260708095022.png]]
+Nos comenta sobre las nuevas características en termino de memoria para el uso de INTEL, se detiene un rato a hablar sobra las nuevas 2 familias de Xeon 6 (E-cores y P-Cores), hablados anteriormente en [[HPE ProLiant Compute Gen12 Performance & Efficiency]]. Básicamente, y volviendo a las memorias, nos dice que dependiendo nuestra elección de CPU si P-Core o E-Core la memoria varia su soporte y hay varias cosas que tenemos que tener en cuenta, para empezar es que memorias estan disponibles dependiendo el tipo de CPU que elijamos:![[Pasted image 20260708095920.png]]
+![[Pasted image 20260708100224.png]]
+![[Pasted image 20260708100359.png]]
+![[Pasted image 20260708100521.png]]
+![[Pasted image 20260708101423.png]]
+![[Pasted image 20260708101515.png]]
+![[Pasted image 20260708101555.png]]
+Nos deja un esquema muy copado, en el cual nos explica cuales son los slots que podemos usar para las diferentes configuraciones de Xeon 6![[Pasted image 20260708101704.png]]
+![[Pasted image 20260708101755.png]]
+
+---
+
+En la siguiente sección nos habla un poco de como mejorar la performance en las memorias, es un recordatorio a [[TekTalk, Right‑Sizing Server Memory, Practical Sizing Guidelines by Workload]], nos explica tambien que el performance esta directamente relacionado con el bandwidth de la memoria, no con su capacidad. ![[Pasted image 20260708102051.png]]
+![[Pasted image 20260708102212.png]]
+![[Pasted image 20260708103111.png]]
+![[Pasted image 20260708103319.png]]
+Ahora vamos a las cosas un poco mas practicas:![[Pasted image 20260708103428.png]]
+![[Pasted image 20260708103716.png]]
+
+---
+Para finalizar la parte de memoria, nos va a comentar sobre esta nueva tecnologia llamada "MRDIMM"![[Pasted image 20260708103850.png]]
+![[Pasted image 20260708104003.png]]
+![[Pasted image 20260708104224.png]]
+Nos comenta que hay un problema y para entenderlo necesitamos ver a esta simple formula, nos comenta que, si hay un gran crecimiento en el bandwidth en estas ultimas generaciones, y que las MRDIMM nos da un mayor bandwidth (esta es la solucion que se nos da para tratar de resolver este problema), el problema radica que el core count esta creciendo mas rápido que el bandwidth (Por eso estamos viendo la nueva innovación de MRDIMM).
+![[Pasted image 20260708104328.png]]
+![[Pasted image 20260708104640.png]]
+![[Pasted image 20260708104851.png]]
+![[Pasted image 20260708105201.png]]
+![[Pasted image 20260708105307.png]]
+![[Pasted image 20260708105355.png]]
+![[Pasted image 20260708105445.png]]
+Finaliza diciéndonos que los MRDIMM no son la única solución para aumentar el bandwidth, tenemos otras maneras de mejorarlas, vistas en [[TekTalk, Right‑Sizing Server Memory, Practical Sizing Guidelines by Workload]]![[Pasted image 20260708105757.png]]
+Y nos dice que esta tecnología no esta pensado para TODOS los servidores![[Pasted image 20260708105814.png]]
+![[Pasted image 20260708110233.png]]
+
+---
+En esta ultima sección vamos a ver un poco sobre cooling y de las opciones que tenemos en general para la generación 12. ![[Pasted image 20260708110416.png]]
+![[Pasted image 20260708111858.png]]
+![[Pasted image 20260708112548.png]]
+![[Pasted image 20260708112725.png]]
+![[Pasted image 20260708113235.png]]
+Termina comentando que en la generación 12 tenemos un sistema de detección de fugas el cual se hablo un poco por encima en algún deep dive, pero aca tenemos un poco mas amplia su explicación de como funciona:![[Pasted image 20260708114020.png]]

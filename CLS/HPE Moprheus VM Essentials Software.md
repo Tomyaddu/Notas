@@ -1,0 +1,2 @@
+Es una solución VM propia de HPE, es una solución de virtualización a bajo costo, lo que lo diferencia de la competencia es que ellos lo cotizan basándose en procesadores, no en los cores![[Pasted image 20260703120615.png]]
+Tambien existe una calculadora de costos![[Pasted image 20260703120644.png]]
