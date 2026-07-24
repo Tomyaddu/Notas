@@ -97,3 +97,18 @@ Por su parte, HPE Cray EX representa la línea de supercomputadoras de HPE. Es u
 
 #### HPE Scale-up Server Portfolio
 
+![[Pasted image 20260724090647.png]]
+
+Los HPE Superdome Flex, Superdome Flex 280 y Scale-Up Server 3200 son plataformas modulares diseñadas para aplicaciones de misión crítica, analítica de datos en tiempo real, HPC e IA.
+
+Están optimizados para grandes cargas de trabajo en memoria, como SAP HANA, e incorporan particionamiento de hardware para aislar cargas y mejorar la escalabilidad y la flexibilidad. Además, ofrecen avanzadas funciones de RAS (Reliability, Availability and Serviceability), como corrección de errores, detección predictiva de fallos y diagnósticos avanzados, garantizando alta disponibilidad e integridad de los datos.
+
+##### HPE HyperConverged Infrastructure (HCI) Portfolio
+
+![[Pasted image 20260724090934.png]]
+
+HPE ofrece soluciones de Infraestructura Hiperconvergente (HCI) que integran cómputo, almacenamiento y virtualización en una plataforma fácil de administrar y desplegar máquinas virtuales. Sus principales soluciones son:
+
+- HPE Alletra dHCI: combina las ventajas de la infraestructura hiperconvergente y la convergente, permitiendo escalar cómputo y almacenamiento de forma independiente. Está optimizada para virtualización, VDI, bases de datos y aplicaciones críticas, utiliza IA para automatizar la gestión y puede funcionar con VMware ESXi o HPE Morpheus VM Essentials. También sirve como base para HPE Private Cloud Business Edition.
+
+- HPE SimpliVity: integra cómputo, almacenamiento, respaldos y optimización en un único sistema definido por software. Destaca por su alta disponibilidad (99,999%), deduplicación y compresión en línea, siendo ideal para virtualización, VDI y entornos edge. Al igual que Alletra dHCI, es compatible con VMware ESXi y HPE Morpheus VM Essentials, y puede utilizarse como infraestructura para HPE Private Cloud Business Edition.
