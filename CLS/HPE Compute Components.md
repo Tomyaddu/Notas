@@ -111,3 +111,4 @@ Además, cuentan con Advanced ECC para detectar y corregir errores de memoria y 
 
 #### GPUS
 
+Pagina 96 del PDF. 
