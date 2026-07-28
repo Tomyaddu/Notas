@@ -109,6 +109,170 @@ La memoria HPE Smart Memory ofrece módulos de 16 GB a 256 GB, mejorando el rend
 
 Además, cuentan con Advanced ECC para detectar y corregir errores de memoria y modos RAS (Reliability, Availability, Serviceability) que permiten al BIOS o al sistema operativo gestionar y corregir fallos de memoria.
 
-#### GPUS
+## GPUs para HPE Compute
 
-Pagina 96 del PDF. 
+Esta sección continúa el tema de procesadores, pero enfocada en aceleradores gráficos/computacionales para Gen12. Destaca el **HPE ProLiant Compute DL384 Gen12**, un servidor con un "superchip" CPU/GPU integrado.
+
+### Familias de GPU NVIDIA soportadas (Gen11/Gen12)
+![[Pasted image 20260728123053.png]]
+
+| Familia NVIDIA | Enfoque principal |
+|---|---|
+| **Ampere** | Aceleración para VDI (inferencia de escritorios virtuales) |
+| **Lovelace** | Uso universal: inferencia de IA, gráficos y video |
+| **Hopper** | Entrenamiento distribuido de IA, fine-tuning e inferencia en tiempo real de LLMs/IA generativa (incluye *Transformer Engine* y arquitectura de memoria distribuida) |
+| **Blackwell** | Próxima generación para entrenamiento, fine-tuning e inferencia de IA; evoluciona las tecnologías de Hopper |
+
+> No todos los modelos de servidor soportan todas las GPU — para el detalle completo hay que revisar las QuickSpecs de "NVIDIA Accelerators for HPE".
+
+### NVLink
+![[Pasted image 20260728123121.png]]
+
+- Tradicionalmente, las GPUs se comunican con el resto del servidor vía **PCIe**.
+- **NVLink** es la alternativa de NVIDIA: interconexión GPU-a-GPU de **alto ancho de banda, baja latencia y sin pérdidas**.
+- En la 4ª generación (usada con Hopper): cada link = par de líneas de alta velocidad, **25 GB/s por dirección**.
+- Las GPU H100 tienen 18 links → **900 GB/s total**, ~7 veces más que un PCIe Gen5 típico (16 lanes, 128 GB/s).
+- Además de velocidad, permite que las GPUs del mismo host se comuniquen directamente, **reduciendo latencia**.
+- Soportado en HPE ProLiant **DL380a Gen11 y Gen12**.
+
+### Guías de población de GPU
+![[Pasted image 20260728123144.png]]
+Determinan cómo distribuir las GPUs dentro del servidor para garantizar enfriamiento, alimentación eléctrica y balance de líneas PCIe adecuados.
+
+### HPE ProLiant Compute DL384 Gen12
+![[Pasted image 20260728123210.png]]
+
+Servidor diseñado específicamente para cargas de IA/HPC intensivas en GPU, con integración CPU/GPU tipo "superchip".
+
+---
+
+## 💾 Almacenamiento local y RAID
+
+### Unidades de almacenamiento local
+![[Pasted image 20260728123239.png]]
+
+### JBOD vs. RAID
+![[Pasted image 20260728123339.png]]
+
+- **JBOD** ("Just a Bunch Of Disks"): expone cada disco individualmente, sin redundancia.
+- **RAID**: agrupa discos en una o más **unidades lógicas**, aportando redundancia y/o mejor rendimiento.
+
+### Niveles RAID 0, 1 y 10
+![[Pasted image 20260728123405.png]]
+
+```mermaid
+flowchart LR
+    subgraph RAID0["RAID 0 — Striping"]
+        A0[Disco A] --- B0[Disco B]
+    end
+    subgraph RAID1["RAID 1 — Mirroring"]
+        A1[Disco A] -.datos iguales.- B1[Disco B]
+    end
+    subgraph RAID10 [" RAID 10 — Striping + Mirroring  "]
+        M1[ Mirror 1] --- M2[Mirror 2]
+    end
+```
+
+| Nivel       | Técnica                 | Tolerancia a fallos         | Uso típico                                          |
+| ----------- | ----------------------- | --------------------------- | --------------------------------------------------- |
+| **RAID 0**  | Striping (distribución) | Ninguna                     | Máximo rendimiento, sin redundancia                 |
+| **RAID 1**  | Mirroring (espejo)      | 1 disco                     | Redundancia simple, capacidad = 50%                 |
+| **RAID 10** | Striping + Mirroring    | Varios (según distribución) | Rendimiento + redundancia, requiere # par de discos |
+
+### Niveles RAID 5 y 6
+![[Pasted image 20260728123621.png]]
+
+| Nivel | Paridad | Tolerancia a fallos | Mínimo de discos |
+|---|---|---|---|
+| **RAID 5** | Simple, distribuida | 1 disco | 3 |
+| **RAID 6** | Doble, distribuida | 2 discos | 4 |
+
+### Niveles RAID 50 y 60
+![[Pasted image 20260728123658.png]]
+
+Combinan varios grupos RAID 5 (→ RAID 50) o RAID 6 (→ RAID 60) mediante striping (RAID 0), sumando capacidad/rendimiento en arreglos grandes.
+
+### Opciones de controladoras de almacenamiento
+![[Pasted image 20260728123723.png]]
+
+### Convenciones de nomenclatura de controladoras HPE
+![[Pasted image 20260728123901.png]]
+
+Permite identificar generación, interfaz y nivel de funciones de cada controladora a partir de su nombre/SKU.
+
+---
+
+## 🔌 Adaptadores y conectividad
+
+### Adaptadores para HPE Compute
+> 📊 *Figura 2-24 (p.122): tipos de adaptadores (NIC, CNA, HBA).*
+
+### HBAs de Fibre Channel (FC)
+> 📊 *Figura 2-25 (p.125): adaptadores FC para conexión a SAN.*
+
+Permiten conectar el servidor a una red de almacenamiento Fibre Channel (SAN).
+
+---
+
+## ❄️ Enfriamiento (Cooling)
+
+### Panorama de opciones de enfriamiento
+> 📊 *Figura 2-26 (p.127): comparación general de opciones de cooling.*
+
+```mermaid
+flowchart TB
+    A[Aire tradicional<br/>~20 kW/rack] --> B[Liquid-to-air<br/>in-row / ARCS / RDHX<br/>~30-40 kW/rack]
+    B --> C[70% DLC<br/>HPE Cray XD / ProLiant soportados<br/>~100 kW/rack]
+    C --> D[100% DLC<br/>Cray EX - fanless<br/>hasta 400 kW/rack]
+```
+
+### Componentes de enfriamiento por aire
+> 📊 *Figura 2-27 (p.128): ventiladores y disipadores.*
+
+Método más tradicional: ventiladores + disipadores. Es el que más energía adicional consume para disipar calor (los ventiladores deben trabajar más).
+
+### Enfriamiento líquido de circuito cerrado (closed-loop)
+> 📊 *Figura 2-28 (p.129).*
+
+### Liquid-to-air cooling
+> 📊 *Figura 2-29 (p.131).*
+
+Soluciones (in-row, HPE ARCS, RDHX) que acercan el líquido a los servidores **sin entrar físicamente en ellos**. Los servidores siguen usando ventiladores, pero trabajan menos porque el sistema absorbe el calor antes.
+- In-row: ~30 kW/rack
+- HPE ARCS / RDHX: hasta ~40 kW/rack
+
+### DLC (Direct Liquid Cooling)
+> 📊 *Figura 2-30 (p.133).*
+
+Lleva el líquido **directamente a los componentes** (CPU/GPU). Muy eficiente energéticamente, resuelve los problemas térmicos típicos del aire.
+
+**Servidores que soportan 70% DLC:**
+- Todos los HPE ProLiant Compute Gen12 rack de 1 y 2 procesadores (Intel y AMD)
+- DL360/DL365 Gen11
+- DL380/DL385 Gen11
+- DL380a Gen11
+
+- **HPE Cray XD**: soporta 70% DLC
+- **HPE Cray EX** (supercomputadoras): soporta 100% DLC (fanless)
+
+### Rango térmico de las soluciones de enfriamiento HPE
+> 📊 *Figuras 2-31 y 2-32 (p.135 y p.138-139): gráfico comparativo de capacidad de enfriamiento vs. consumo de energía por tipo de solución.*
+
+A medida que se avanza de aire → liquid-to-air → 70% DLC → 100% DLC:
+- **Aumenta** la capacidad de enfriamiento por rack (20 kW → 30 kW → 40 kW → 100 kW → 400 kW)
+- **Disminuye** la necesidad de energía de los ventiladores del servidor
+
+### Otra infraestructura de rack y energía HPE
+> 📊 *Figura 2-33 (p.144).*
+
+- **HPE Enterprise Series Racks** y **HPE G2 Advanced Series Racks**: 22U–48U, anchos de 600/800 mm, profundidades de 1075/1200 mm.
+- **PDUs (Power Distribution Units)**: entrega de energía redundante, variantes medidas ("metered") e inteligentes (monitoreo/gestión remota).
+
+> [!question] Learning check (p.148)
+> Un cliente pregunta: *"Estamos planeando una solución HPC/IA, pero nos preocupa que el calor generado por el clúster afecte a otros componentes del datacenter. ¿Existe una solución de enfriamiento para esto?"*
+> → Repasar las opciones DLC / liquid-to-air como respuesta.
+
+### 📝 Resumen del Capítulo 2 (componentes)
+Los componentes de HPE Compute incluyen procesadores, memoria, aceleradores GPU y controladoras de almacenamiento, además de NICs, CNAs y HBAs para conectividad de red. HPE ofrece varias soluciones de enfriamiento (líquido de circuito cerrado, DLC, aire simple, y productos de rack como ARCS y RDHX) para atender disipación de calor y consumo energético.
+
+---

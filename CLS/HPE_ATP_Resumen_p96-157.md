@@ -10,7 +10,7 @@ tags: [hpe, atp, compute, gpu, raid, cooling, ilo, certificacion]
 
 ---
 
-## 🎮 GPUs para HPE Compute
+## GPUs para HPE Compute
 
 Esta sección continúa el tema de procesadores, pero enfocada en aceleradores gráficos/computacionales para Gen12. Destaca el **HPE ProLiant Compute DL384 Gen12**, un servidor con un "superchip" CPU/GPU integrado.
 
