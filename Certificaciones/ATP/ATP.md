@@ -51,14 +51,14 @@
 
 - [[TekTalk on Point - HPE SimpliVity core concepts]]
 - [[HPE SimpliVity with Private Cloud Business Edition]]
-- [[TekTalk Hybrid cloud virtualization news Validated HPE VM Essentials Software workloads and Broadcom vSphere 9 updates]] (Resumen + diapo (Prueba con IA))
-- [[Introduction to HPE GreenLake for Private Cloud Business Edition]] (Resumir del handout)
+- [[TekTalk Hybrid cloud virtualization news Validated HPE VM Essentials Software workloads and Broadcom vSphere 9 updates]] 
+- [[Introduction to HPE GreenLake for Private Cloud Business Edition]] 
 
 
 #### Competency
 
 - [[TekTalk, Right‑Sizing Server Memory, Practical Sizing Guidelines by Workload]]
-- [[TekTalk HPE Private Cloud Business Edition - size, design, and quote using IQ]] (Resumen + diapo (Prueba con IA))
+- [[TekTalk HPE Private Cloud Business Edition - size, design, and quote using IQ]] 
 - [[TekTalk HPE Private Cloud Business Edition - introducing the inclusion of HPE Morpheus VM Essentials Software]]
 - [[TekTalk HPE Private Cloud Business Edition - sizing and configuration guidance now that it comes with HPE Morpheus VM Essentials Software]]
 
