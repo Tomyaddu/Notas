@@ -142,7 +142,16 @@ Determinan cómo distribuir las GPUs dentro del servidor para garantizar enfriam
 ### HPE ProLiant Compute DL384 Gen12
 ![[Pasted image 20260728123210.png]]
 
-Servidor diseñado específicamente para cargas de IA/HPC intensivas en GPU, con integración CPU/GPU tipo "superchip".
+El **HPE ProLiant Compute DL384 Gen12** es un servidor optimizado para **Inteligencia Artificial**, que integra el **NVIDIA GH200 Grace Hopper Superchip** (CPU + GPU) en una configuración **1:1**.
+
+Está diseñado para **LLMs (Large Language Models)**, ajuste fino (_fine-tuning_), inferencia con **RAG**, HPC, nube y cargas de trabajo intensivas en memoria. Destaca por su alto rendimiento y eficiencia energética.
+
+**Características principales:**
+
+- **900 GB/s** de ancho de banda **NVLink-C2C**.
+- **624 GB** de memoria de alta velocidad.
+- Hasta **4 PFLOPS** de rendimiento para IA.
+- **72 núcleos ARM** para procesamiento paralelo y escalabilidad.
 
 ---
 
@@ -150,12 +159,43 @@ Servidor diseñado específicamente para cargas de IA/HPC intensivas en GPU, con
 
 ### Unidades de almacenamiento local
 ![[Pasted image 20260728123239.png]]
+Los servidores pueden utilizar dos tipos de **almacenamiento local**:
+
+- **HDD (Hard Disk Drive):** almacena datos en discos magnéticos. Ofrece **mayor capacidad a menor costo**, pero menor rendimiento.
+- **SSD (Solid State Drive):** almacena datos en memoria flash, proporcionando **lectura y escritura mucho más rápidas** que los HDD.
+
+Las unidades se conectan mediante distintos protocolos:
+
+- **SATA:** compatible con HDD y SSD.
+- **SAS:** compatible con HDD y SSD, orientado a entornos empresariales.
+- **NVMe:** exclusivo para SSD, ofreciendo el **mayor rendimiento y menor latencia**.
+
+En general, los **HDD** siguen siendo la opción más económica por capacidad, mientras que los **SSD**, especialmente **NVMe**, son la mejor opción cuando se busca máximo rendimiento.
 
 ### JBOD vs. RAID
 ![[Pasted image 20260728123339.png]]
 
-- **JBOD** ("Just a Bunch Of Disks"): expone cada disco individualmente, sin redundancia.
-- **RAID**: agrupa discos en una o más **unidades lógicas**, aportando redundancia y/o mejor rendimiento.
+**JBOD (Just a Bunch Of Drives)**
+
+- El controlador presenta **cada disco físico por separado** al sistema operativo.
+- El SO administra y formatea cada unidad individualmente.
+- No ofrece **redundancia** ni combina la capacidad de los discos.
+- Se utiliza cuando una aplicación necesita **acceso directo** al disco y el máximo rendimiento.
+
+**RAID (Redundant Array of Independent Disks)**
+
+- El controlador agrupa varios discos físicos en **una única unidad lógica** para el sistema operativo.
+- Los datos se distribuyen entre los discos según el nivel de RAID.
+- Ofrece ventajas como:
+    - **Mayor disponibilidad**, tolerando la falla de uno o más discos (según el RAID).
+    - **Mejor rendimiento**, al leer y escribir en varios discos simultáneamente.
+    - **Mayor capacidad**, combinando varios discos en una sola unidad lógica.
+    - **Funciones avanzadas** de administración proporcionadas por el controlador.
+
+**En pocas palabras:**
+
+- **JBOD = discos independientes, sin redundancia.**
+- **RAID = varios discos trabajando como uno solo, con mejor rendimiento y/o protección de datos.**
 
 ### Niveles RAID 0, 1 y 10
 ![[Pasted image 20260728123405.png]]
@@ -194,30 +234,66 @@ Combinan varios grupos RAID 5 (→ RAID 50) o RAID 6 (→ RAID 60) mediante stri
 
 ### Opciones de controladoras de almacenamiento
 ![[Pasted image 20260728123723.png]]
+Los servidores **HPE Compute Gen11 y Gen12** ofrecen **tres opciones principales** para gestionar el almacenamiento:
 
+- **HPE Compute Storage Controllers (Hardware RAID):**
+    - Utilizan una **controladora dedicada** para gestionar el RAID.
+    - Ofrecen **mejor rendimiento, disponibilidad y seguridad** para cargas de trabajo críticas.
+    - Incluyen las familias **MR (Broadcom MegaRAID)** y **SR (MicroChip SmartRAID)**.
+- **Intel Virtual RAID on CPU (vROC) (Software RAID):**
+    - El **procesador** realiza las funciones RAID, sin necesidad de una controladora dedicada.
+    - En **Gen11** funciona con **SATA y NVMe**; en **Gen12**, solo con **NVMe**.
+    - Requiere una **licencia** para RAID sobre NVMe y admite distintos niveles de RAID según la licencia y el sistema operativo.
+- **Boot Optimized Storage Device (Hardware RAID):**
+    - Dispositivo diseñado específicamente para el **arranque del sistema**.
+    - Incorpora **dos SSD M.2 NVMe** configurados automáticamente en **RAID 1**, sin necesidad de configuración manual.
+    - Disponible en versiones de **480 GB**, **960 GB** y **960 GB con cifrado (SED)**.
 ### Convenciones de nomenclatura de controladoras HPE
 ![[Pasted image 20260728123901.png]]
 
 Permite identificar generación, interfaz y nivel de funciones de cada controladora a partir de su nombre/SKU.
+
+- **MR 200:** RAID **0, 1 y 10** (Essential).
+- **MR 400:** RAID **0, 1, 5, 6, 10, 50 y 60**, además de funciones avanzadas.
+- **SR 400 y SR 900:** RAID **0, 1, 5, 6, 10, 50, 60, 1T y 10T**, siendo la **900** la línea orientada a cargas de trabajo de mayor rendimiento.
+  
+#### Características principales de las HPE Compute Storage Controllers
+  
+Las **HPE Compute Storage Controllers (MR y SR)** incorporan varias funciones para mejorar el rendimiento, la flexibilidad y la seguridad:
+
+- **Mixed Mode:** permite usar algunos discos en **JBOD** y otros en **RAID** al mismo tiempo.
+- **Tri-Mode:** soporta unidades **SAS, SATA y NVMe** con una misma controladora.
+- **Seguridad:** compatible con **Self-Encrypting Drives (SED)** y funciones de borrado seguro de discos.
+- **Read-Ahead Caching:** precarga datos secuenciales en caché para acelerar las lecturas.
+- **Write-Back Caching + FBWC (Flash-Backed Write Cache):** mejora el rendimiento de escritura almacenando temporalmente los datos en caché y protegiéndolos ante cortes de energía mediante memoria flash y un **Energy Pack**. Disponible en **MR 400** y **SR**, pero no en **MR 200**.
+- **FastPath (I/O Performance Mode):** exclusivo de las **MR**, optimiza el rendimiento de operaciones aleatorias, especialmente en **SSD** y **RAID 0**.
+- **SmartCache (maxCache 4.0):** exclusivo de las **SR**, utiliza SSD como caché para acelerar el acceso a datos frecuentes. Requiere licencia y **Energy Pack**.
 
 ---
 
 ## 🔌 Adaptadores y conectividad
 
 ### Adaptadores para HPE Compute
-> 📊 *Figura 2-24 (p.122): tipos de adaptadores (NIC, CNA, HBA).*
+![[Pasted image 20260731091918.png]]
+HPE ofrece una amplia gama de **adaptadores de red Ethernet**, con velocidades desde **1 Gb hasta 200 Gb**, disponibles en versiones de **2 o 4 puertos** y basados en tecnologías de **Broadcom, Mellanox e Intel**.
+
+Además, dispone de adaptadores **InfiniBand/Ethernet** de **200 Gb y 400 Gb**, ideales para **HPC e IA**, compatibles con **RoCE v2**, que permite utilizar Ethernet para tráfico RDMA de baja latencia.
+
+Para entornos de IA de alto rendimiento, HPE ofrece **DPU (Data Processing Unit)** basadas en **NVIDIA BlueField-3**, que mejoran la comunicación entre GPUs en clústeres de IA cuando se utilizan junto con switches **NVIDIA Spectrum-X**.
+
+Según el servidor, los adaptadores pueden instalarse en formato **PCIe** o **OCP**.
 
 ### HBAs de Fibre Channel (FC)
-> 📊 *Figura 2-25 (p.125): adaptadores FC para conexión a SAN.*
+![[Pasted image 20260731092003.png]]
+Los servidores **HPE** utilizan **Fibre Channel HBAs (Host Bus Adapters)** para conectarse a **redes SAN (Storage Area Network)**, permitiendo acceder a almacenamiento compartido en cabinas como **HPE Alletra Storage MP B10000**.
 
-Permiten conectar el servidor a una red de almacenamiento Fibre Channel (SAN).
+HPE ofrece HBAs de **1 o 2 puertos**, con velocidades de **32 Gb y 64 Gb**, basados en tecnologías **Emulex** o **QLogic**.
 
----
 
 ## ❄️ Enfriamiento (Cooling)
 
 ### Panorama de opciones de enfriamiento
-> 📊 *Figura 2-26 (p.127): comparación general de opciones de cooling.*
+![[Pasted image 20260731092105.png]]
 
 ```mermaid
 flowchart TB
@@ -225,54 +301,97 @@ flowchart TB
     B --> C[70% DLC<br/>HPE Cray XD / ProLiant soportados<br/>~100 kW/rack]
     C --> D[100% DLC<br/>Cray EX - fanless<br/>hasta 400 kW/rack]
 ```
+Los sistemas **HPE Compute** (ProLiant, Cray y Superdome Flex) incorporan tecnologías de **gestión de energía, refrigeración y montaje en rack** para garantizar alto rendimiento y confiabilidad en centros de datos y entornos HPC.
 
+En cuanto a la **temperatura de operación**:
+
+- El rango estándar es de **10 °C a 35 °C**.
+- Muchos servidores **Gen11 y Gen12** cumplen con los estándares **ASHRAE A3 (hasta 40 °C)** y **A4 (hasta 45 °C)**.
+- Algunos modelos, como el **HPE ProLiant DL145 Gen11**, pueden operar hasta **55 °C** bajo determinadas configuraciones.
+- La temperatura máxima permitida disminuye con la altitud (**1 °C cada 305 m**, hasta 3050 m).
+- Los límites de temperatura también dependen de la configuración del servidor (CPU, GPU, memoria y almacenamiento instalados).
+  
+ Para mantener un rendimiento óptimo, los servidores **HPE Compute** utilizan distintas tecnologías de refrigeración:
+
+- **Air Cooling:** refrigeración por aire mediante ventiladores y disipadores; es la opción estándar en todos los servidores.
+- **Closed-Loop Liquid Cooling:** utiliza un circuito cerrado de líquido para enfriar los componentes, siendo más eficiente que la refrigeración por aire.
+- **Liquid-to-Air Cooling:** complementa la refrigeración del rack o de varios racks para mejorar la disipación del calor.
+- **Direct Liquid Cooling (DLC):** la solución más eficiente, utilizada en sistemas de alto rendimiento y alta densidad.
+
+Además, HPE ofrece herramientas como **HPE Power and Cooling Manager** para optimizar el consumo energético y la gestión térmica de la infraestructura.
 ### Componentes de enfriamiento por aire
-> 📊 *Figura 2-27 (p.128): ventiladores y disipadores.*
+![[Pasted image 20260731092120.png]]
 
-Método más tradicional: ventiladores + disipadores. Es el que más energía adicional consume para disipar calor (los ventiladores deben trabajar más).
+La **refrigeración por aire** es la opción más utilizada, especialmente en servidores que **no requieren una alta densidad de GPUs**.
+
+HPE ofrece dos tipos de kits de ventiladores:
+
+- **Standard Fan Kit:** para configuraciones estándar.
+- **High Performance Fan Kit:** recomendado para servidores con procesadores de **más de 270 W de TDP**.
 
 ### Enfriamiento líquido de circuito cerrado (closed-loop)
-> 📊 *Figura 2-28 (p.129).*
+![[Pasted image 20260731092315.png]]
+La **Closed-Loop Liquid Cooling** es un sistema de refrigeración líquida de **circuito cerrado** integrado dentro del servidor. Un líquido refrigerante circula por tubos hasta los **cold plates (heatsinks)** sobre los procesadores, absorbe el calor y luego pasa por un **intercambiador de calor** que lo enfría para reutilizarlo.
 
+Este sistema:
+
+- **No requiere agua externa** del centro de datos.
+- Sigue utilizando **ventiladores** para enfriar el intercambiador de calor, por lo que es menos eficiente que el **Direct Liquid Cooling (DLC)**.
+- Está diseñado para procesadores con **TDP de 270 W o superior**.
+- Está disponible en algunos **HPE ProLiant Gen12** (DL320, DL325, DL360 y DL560) y algunos sistemas **HPE Cray XD** también pueden incluir refrigeración líquida para la memoria.
 ### Liquid-to-air cooling
-> 📊 *Figura 2-29 (p.131).*
+![[Pasted image 20260731092354.png]]
 
-Soluciones (in-row, HPE ARCS, RDHX) que acercan el líquido a los servidores **sin entrar físicamente en ellos**. Los servidores siguen usando ventiladores, pero trabajan menos porque el sistema absorbe el calor antes.
-- In-row: ~30 kW/rack
-- HPE ARCS / RDHX: hasta ~40 kW/rack
+La **Liquid-to-Air Cooling** utiliza **agua fría del centro de datos** para absorber el calor del aire caliente expulsado por los servidores, mejorando la eficiencia de la refrigeración por aire.
+
+HPE ofrece dos soluciones:
+
+- **HPE Rear Door Heat Exchanger (RDHX):**
+    - Se instala en la parte trasera del rack.
+    - Enfría el aire caliente antes de que salga al centro de datos.
+    - Reduce la necesidad de climatización de la sala y es ideal para racks de alta densidad.
+- **HPE Adaptive Rack Cooling Solution (ARCS):**
+    - Utiliza un intercambiador de calor, sensores y ventiladores de velocidad variable para enfriar y recircular el aire.
+    - Reduce el consumo energético y permite soportar mayores densidades de servidores.
+    - Puede refrigerar **hasta 4 racks** con una capacidad total de **150 kW** de TI.
 
 ### DLC (Direct Liquid Cooling)
-> 📊 *Figura 2-30 (p.133).*
+![[Pasted image 20260731092433.png]]
 
-Lleva el líquido **directamente a los componentes** (CPU/GPU). Muy eficiente energéticamente, resuelve los problemas térmicos típicos del aire.
+El **Direct Liquid Cooling (DLC)** es el sistema de refrigeración más eficiente de HPE y está disponible en varios servidores **ProLiant Gen11, Gen12, ProLiant XD y Cray**.
 
-**Servidores que soportan 70% DLC:**
-- Todos los HPE ProLiant Compute Gen12 rack de 1 y 2 procesadores (Intel y AMD)
-- DL360/DL365 Gen11
-- DL380/DL385 Gen11
-- DL380a Gen11
-
-- **HPE Cray XD**: soporta 70% DLC
-- **HPE Cray EX** (supercomputadoras): soporta 100% DLC (fanless)
+- Utiliza **cold plates** con líquido refrigerante para enfriar directamente los componentes que más calor generan (CPU y GPU), mientras que el resto de los componentes sigue utilizando refrigeración por aire.
+- En los sistemas **70% DLC**, el **70% del calor** se elimina mediante líquido y el **30% restante** mediante ventiladores, que funcionan a menor velocidad.
+- Emplea **dos circuitos de refrigeración**:
+    - **Circuito secundario:** líquido refrigerante (agua + propilenglicol) que circula dentro del servidor.
+    - **Circuito primario:** agua del centro de datos que enfría el circuito secundario mediante un **Cooling Distribution Unit (CDU)**, sin mezclar ambos líquidos.
+- Ofrece una **alta eficiencia energética** y permite refrigerar procesadores y GPUs de muy alto rendimiento.
+- Los **HPE Cray XD** utilizan **70% DLC**, mientras que los **HPE Cray EX** emplean **100% DLC**.
 
 ### Rango térmico de las soluciones de enfriamiento HPE
-> 📊 *Figuras 2-31 y 2-32 (p.135 y p.138-139): gráfico comparativo de capacidad de enfriamiento vs. consumo de energía por tipo de solución.*
+![[Pasted image 20260731092514.png]]
 
-A medida que se avanza de aire → liquid-to-air → 70% DLC → 100% DLC:
-- **Aumenta** la capacidad de enfriamiento por rack (20 kW → 30 kW → 40 kW → 100 kW → 400 kW)
-- **Disminuye** la necesidad de energía de los ventiladores del servidor
+A medida que aumenta la capacidad de refrigeración, **disminuye el consumo de energía de los servidores**, ya que los ventiladores trabajan menos.
+
+|Solución|Capacidad aprox.|Características|
+|---|---|---|
+|**AHU Rack Containment**|**20 kW/rack**|Refrigeración tradicional por aire; los ventiladores consumen más energía.|
+|**In-row Cooler**|**30 kW/rack**|Refrigeración líquida a nivel de fila de racks.|
+|**RDHX / ARCS**|**40 kW/rack**|Refrigeración líquido-aire; el agua enfría el aire alrededor de los servidores, mejorando la eficiencia sin llevar líquido al interior del servidor.|
+|**70% Direct Liquid Cooling (DLC)**|**100 kW/rack**|El líquido enfría directamente CPU y GPU (70% del calor); los ventiladores solo eliminan el 30% restante. Disponible en **HPE ProLiant** y **HPE Cray XD**.|
+|**100% Direct Liquid Cooling (Fanless)**|**400 kW/rack**|Refrigeración completamente líquida, sin ventiladores. Utilizada en los supercomputadores **HPE Cray EX**.|
+
+#### **Idea clave**
+
+- **Más capacidad de refrigeración = menor consumo eléctrico de los servidores.**
+- Las soluciones evolucionan desde **aire tradicional → líquido cerca del servidor → líquido dentro del servidor (DLC)**, siendo **100% DLC** la opción más potente y eficiente para cargas HPC e IA.
 
 ### Otra infraestructura de rack y energía HPE
-> 📊 *Figura 2-33 (p.144).*
+![[Pasted image 20260731092657.png]]
 
-- **HPE Enterprise Series Racks** y **HPE G2 Advanced Series Racks**: 22U–48U, anchos de 600/800 mm, profundidades de 1075/1200 mm.
-- **PDUs (Power Distribution Units)**: entrega de energía redundante, variantes medidas ("metered") e inteligentes (monitoreo/gestión remota).
+HPE ofrece una línea completa de **racks y soluciones de alimentación** para centros de datos y entornos de alta densidad.
 
-> [!question] Learning check (p.148)
-> Un cliente pregunta: *"Estamos planeando una solución HPC/IA, pero nos preocupa que el calor generado por el clúster afecte a otros componentes del datacenter. ¿Existe una solución de enfriamiento para esto?"*
-> → Repasar las opciones DLC / liquid-to-air como respuesta.
+- **Racks HPE Enterprise Series y G2 Advanced Series:** disponibles en distintos tamaños (**22U a 48U**), anchos (**600 mm y 800 mm**) y profundidades (**1075 mm y 1200 mm**) para adaptarse a diferentes necesidades.
+- **Power Distribution Units (PDUs):** proporcionan alimentación confiable y redundante. Existen versiones **metered** e **intelligent**, que permiten monitoreo y administración remota del consumo eléctrico.
+- En conjunto, los **racks, PDUs y soluciones de refrigeración** de HPE ofrecen una infraestructura escalable, eficiente y confiable para soportar servidores y sistemas de almacenamiento críticos.
 
-### 📝 Resumen del Capítulo 2 (componentes)
-Los componentes de HPE Compute incluyen procesadores, memoria, aceleradores GPU y controladoras de almacenamiento, además de NICs, CNAs y HBAs para conectividad de red. HPE ofrece varias soluciones de enfriamiento (líquido de circuito cerrado, DLC, aire simple, y productos de rack como ARCS y RDHX) para atender disipación de calor y consumo energético.
-
----
