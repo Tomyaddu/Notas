@@ -77,3 +77,172 @@
 
 ### HPE Intelligent Provisioning (introducción)
 ![[Pasted image 20260731093149.png]]
+**Intelligent Provisioning** es una herramienta integrada en los servidores **HPE ProLiant** y **HPE Synergy** que simplifica el ciclo de vida del servidor, desde el aprovisionamiento hasta el desmantelamiento.
+
+Sus principales funciones son:
+
+- **Instalar sistemas operativos** compatibles y preparar el servidor para el **Service Pack for ProLiant (SPP)**.
+- **Configurar** el BIOS, **iLO** y las controladoras de almacenamiento (incluyendo la creación de volúmenes **RAID**).
+- **Actualizar firmware** y consultar los registros de **Active Health System (AHS)** para monitoreo y diagnóstico.
+- **Crear paquetes de despliegue** para automatizar instalaciones y configuraciones en múltiples servidores.
+- **Reaprovisionar o desmantelar** servidores mediante un **Secure Erase**, que elimina los datos siguiendo el estándar **NIST 800-88**.
+
+**Versiones compatibles:**
+
+- **Gen11:** Intelligent Provisioning **4.x** (excepto **4.4**).
+- **Gen12 + iLO 6:** **4.4**.
+- **Gen12 + iLO 7:** **5.x**.
+  
+
+#### Accesing Intelligent Provisioning
+![[Pasted image 20260803090832.png]]
+Tradicionalmente, **Intelligent Provisioning** se ejecutaba al iniciar el servidor, accediendo con **F10** durante el POST.
+
+Con **HPE iLO**, ahora está disponible en modo **Always On**, lo que permite acceder a sus funciones **directamente desde la interfaz de iLO**, incluso con el servidor encendido.
+
+Aunque existen pequeñas diferencias entre la versión tradicional y **Always On**, ambas ofrecen funcionalidades muy similares para la administración y configuración del servidor.
+
+### UEFI
+![[Pasted image 20260803090948.png]]
+**UEFI** reemplaza al antiguo **BIOS** en los servidores **HPE ProLiant Gen11 y Gen12**, proporcionando un entorno de arranque más moderno y con mayores capacidades.
+
+Sus principales ventajas son:
+
+- Permite **arrancar desde discos de más de 2.2 TB**.
+- Es compatible con tarjetas de expansión que requieren **UEFI Option ROM**.
+- Ofrece una **interfaz gráfica (UEFI System Utilities)** para configurar el servidor.
+- Incluye una **UEFI Shell** para ejecutar scripts y herramientas antes de iniciar el sistema operativo.
+- Soporta **despliegues por red** mediante **PXE**, con compatibilidad para **IPv4 e IPv6**.
+- Incorpora funciones de seguridad como **Secure Boot**.
+
+Desde **UEFI System Utilities**, los administradores pueden:
+
+- Configurar dispositivos y hardware instalado.
+- Habilitar o deshabilitar funciones del sistema.
+- Consultar información del servidor.
+- Configurar opciones de memoria.
+- Seleccionar el dispositivo o partición de arranque.
+- Acceder a otros entornos de configuración antes del inicio del sistema operativo.
+
+### Built-In Security for HPE Compute
+
+#### Introdouction of Silicon Root of Trust (iLO 6)
+![[Pasted image 20260803091242.png]]
+**HPE Silicon Root of Trust** es una tecnología de seguridad integrada en los servidores HPE con **iLO** que protege contra ataques al firmware.
+
+Su funcionamiento es el siguiente:
+
+- Al encender el servidor, **iLO verifica que su propio firmware coincida con una huella digital (fingerprint) inmutable almacenada en el hardware (ASIC)**.
+- Si el firmware es legítimo, el proceso de arranque continúa; si detecta una modificación o malware, **detiene el arranque** para evitar comprometer el sistema.
+- Luego, **iLO verifica el firmware UEFI**, y **UEFI**, mediante **Secure Boot**, valida el cargador del sistema operativo antes de iniciarlo.
+
+De esta forma, se establece una **cadena de confianza (Chain of Trust)** que verifica cada etapa del arranque y garantiza que **solo se ejecute firmware y software auténtico**, protegiendo al servidor frente a malware, ransomware y otros ataques dirigidos al firmware.
+
+#### SPDM (Added with iLO 6)
+![[Pasted image 20260803091424.png]]
+A partir de **iLO 6 (Gen11)**, HPE incorporó **SPDM (Security Protocol and Data Model)** para ampliar la protección de **Silicon Root of Trust**.
+
+Gracias a **SPDM**, el servidor no solo verifica el firmware de **iLO** y **UEFI**, sino también el de otros componentes de hardware, como:
+
+- **CPLD (Complex Programmable Logic Device)**, presente en dispositivos como controladoras de almacenamiento.
+- **Dispositivos PCIe**, incluyendo controladoras de almacenamiento y adaptadores de red.
+- **Firmware Intel SPS (Server Platform Services)** de los procesadores Intel.
+- **UEFI BIOS (System ROM)**, cuya firma digital sigue siendo validada.
+
+En resumen, **SPDM extiende la cadena de confianza** para autenticar múltiples componentes del servidor y garantizar que ninguno haya sido comprometido antes del arranque.
+
+#### Silicon Root of Trust recovery
+![[Pasted image 20260803091548.png]]
+Además de **detectar firmware comprometido**, **HPE Silicon Root of Trust** puede **recuperarlo automáticamente**.
+
+- Mantiene una **copia segura del firmware** de componentes críticos como **iLO, UEFI, Intel SPS y CPLD**.
+- Si detecta que alguno de estos firmwares ha sido modificado o comprometido, **restaura automáticamente una versión confiable**, sin necesidad de intervención del administrador.
+
+En otras palabras, **Silicon Root of Trust no solo detecta ataques al firmware, sino que también recupera el servidor a un estado seguro de forma automática**.
+
+#### Silicon Root of trust with the iLO 7 secure enclave
+![[Pasted image 20260803091647.png]]
+En los servidores **HPE ProLiant Gen12 con iLO 7**, HPE incorpora un **Secure Enclave**, un procesador de seguridad dedicado, aislado y reforzado que se encuentra integrado dentro del ASIC de iLO. Su función es asumir el primer paso de la cadena de confianza (**Chain of Trust**), validándose a sí mismo y verificando el firmware de iLO antes de permitir que este comience a ejecutarse. De esta forma, incluso si existiera una vulnerabilidad en el firmware de iLO, la cadena de confianza permanece protegida.
+
+Además, iLO 7 mejora el mecanismo de recuperación del firmware. Mantiene **múltiples copias de respaldo** de todos los elementos críticos (almacenadas en diferentes medios, como memoria NOR interna, NOR externa y NAND Flash). Si se detecta firmware comprometido, el **Secure Enclave** —o el propio ASIC de iLO si el enclave no puede ejecutarse— inicia automáticamente el proceso de recuperación para restaurar una versión confiable del firmware. También amplía la validación de firmware a procesadores y dispositivos PCIe o modulares (DC-MHS).
+
+### Beneficios del Secure Enclave
+
+El Secure Enclave proporciona un nivel de seguridad superior durante todo el ciclo de vida del servidor, desde la fabricación hasta el retiro del equipo. Al ejecutarse en un entorno aislado y resistente a manipulaciones, protege especialmente los servidores instalados en ubicaciones donde la seguridad física puede ser limitada.
+
+Entre sus principales ventajas se encuentran:
+
+- **Elimina vulnerabilidades asociadas a la EEPROM externa**, evitando ataques físicos como _chip clipping_ que podrían comprometer el firmware.
+- **Gestiona de forma segura claves criptográficas, certificados y credenciales**, actuando como un intermediario de confianza.
+- **Permite la transferencia segura de propiedad del servidor** sin necesidad de hardware adicional, ofreciendo funcionalidades similares a un **TPM** integrado.
+- Gracias a estas capacidades, los servidores **HPE ProLiant Gen12** son los **primeros servidores estándar de la industria** en cumplir con la certificación **FIPS 140-3 Nivel 3**, uno de los estándares de seguridad criptográfica más exigentes para proteger frente a ataques físicos y lógicos.
+
+#### Additional HPE Compute security features
+
+- **TPM 2.0 (Trusted Platform Module):** Todos los servidores **HPE ProLiant Gen11 y Gen12** incluyen un **TPM 2.0 integrado**, un chip de hardware que almacena de forma segura claves de cifrado, certificados y otra información sensible utilizada para la autenticación y la seguridad.
+- **Certificados de identidad del servidor:** Desde **Gen11**, todos los servidores incorporan un certificado **IDevID (Initial Device Identifier)** instalado de fábrica, que proporciona una identidad única y permanente del servidor. En **Gen12 con iLO 7**, también se admite **LDevID (Locally Significant Device Identifier)**, una identidad definida por el cliente. Ambos certificados ayudan a implementar arquitecturas **Zero Trust**, permitiendo autenticar que el servidor es un dispositivo confiable.
+- **Server Configuration Lock:** Protege el servidor contra modificaciones no autorizadas creando una **huella digital (fingerprint)** de la configuración, almacenada en el **TPM 2.0**. Durante el arranque (POST), cualquier cambio en componentes como **CPU, memoria (DIMM), dispositivos PCIe, configuración de seguridad o firmware** es detectado y el sistema detiene el inicio hasta que un administrador autorice el cambio mediante contraseña. Puede habilitarse de fábrica mediante **Trusted Supply Chain** o manualmente por el cliente.
+- **Chassis Intrusion Detection:** Detecta y registra la apertura o cierre del chasis, incluso si el servidor está apagado, permitiendo identificar posibles manipulaciones físicas. También puede activarse de fábrica con **Trusted Supply Chain**.
+- **Algoritmos resistentes a la computación cuántica:** Los **ProLiant Gen12 con iLO 7** incorporan firmas de firmware compatibles con los estándares **NIST** y **CNSA 2.0**, utilizando algoritmos criptográficos diseñados para resistir futuros ataques de computadoras cuánticas, reforzando la seguridad a largo plazo.
+
+#### **HPE Trusted Supply Chain (TSC)**
+
+Es un servicio para clientes que requieren el máximo nivel de seguridad e integridad del hardware. Los servidores se fabrican en una instalación segura de HPE en EE. UU., siguiendo estrictos controles de fabricación, inspección y trazabilidad.
+
+Además, el servidor sale de fábrica con varias medidas de seguridad ya habilitadas:
+
+- **Chassis Intrusion Detection** activado.
+- **Server Configuration Lock** habilitado para proteger el equipo durante el transporte.
+- **UEFI Secure Boot** habilitado.
+- **iLO Security State** configurado en **High Security (iLO 6)** o **Secure Standard (iLO 7)**, utilizando cifrado seguro (AES) para las conexiones web, SSH y la API REST.
+- Incluye una logística segura durante el transporte.
+- Los modelos se identifican con una **"T"** en el nombre (ej. **DL380T**) y una etiqueta **Trusted Supply Chain**.
+- En **Gen12**, HPE añadió **Trusted Supply Chain a nivel de rack**, garantizando también la integridad de racks completos.
+
+---
+
+#### **HPE Server Security Optimized Service (SSOS)**
+
+Ofrece el mismo endurecimiento de seguridad (**hardening**) que Trusted Supply Chain, pero **sin fabricar el servidor en la instalación segura de EE. UU.**
+
+Incluye:
+
+- Chassis Intrusion Detection.
+- Server Configuration Lock.
+- UEFI Secure Boot.
+- iLO Security State en High Security o Secure Standard.
+
+A diferencia de Trusted Supply Chain, este servicio está disponible para **modelos globales**, incluyendo **LATAM, EMEA y APJ**.
+
+---
+
+### Data at Rest Encryption (Cifrado de datos en reposo)
+
+Los servidores **HPE ProLiant Gen12** ofrecen múltiples opciones para proteger los datos almacenados.
+
+**Gestión de claves (Key Management):**
+
+- **HKM (Host Key Management)**
+- **LKM (Local Key Management)**
+- **RKM (Remote Key Manager)**
+- **EKM (Enterprise Key Manager)**
+
+Esto permite adaptar la estrategia de cifrado según las necesidades de seguridad y cumplimiento.
+
+**Tecnología de cifrado:**
+
+- Gen12 utiliza exclusivamente **Self-Encrypting Drives (SEDs)**, donde el cifrado se realiza directamente en el disco.
+- Compatible con:
+    - **Intel vROC**
+    - **HPE Compute MR Storage Controllers**
+    - **HPE Compute SR Storage Controllers**
+- Algunas funciones pueden requerir licencias y no todas las combinaciones de controladores y cifrado son compatibles.
+
+**Administración del cifrado:**  
+Puede realizarse mediante:
+
+- **UEFI**
+- **HPE MR Storage Administrator (MRSA)** para controladores MR.
+- **Smart Storage Administrator (SSA)** para controladores SR.
+- Herramientas de línea de comandos (**SSACLI** y **StorCLI**).
+- **HPE iLO**, para administrar de forma centralizada los gestores de claves remotos (RKM).
