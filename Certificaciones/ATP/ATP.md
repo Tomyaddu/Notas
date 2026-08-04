@@ -24,7 +24,7 @@
 #### Examen
 
 - [Examen](https://certification-learning.hpe.com/tr/datacard/Exam/HPE3-CL15) ✅
-### **[Compute Management](https://techpro.hpe.com/learningPath.aspx?family=CCC)** (8/8)🚧
+### **[Compute Management](https://techpro.hpe.com/learningPath.aspx?family=CCC)** (8/8)✅
 
 #### Awarness
 
@@ -43,9 +43,9 @@
 
 #### Examen
 
-- [Examen](https://certification-learning.hpe.com/tr/datacard/Exam/HPE3-CL16)
+- [Examen](https://certification-learning.hpe.com/tr/datacard/Exam/HPE3-CL16)✅
 
-### **[Cloud Foundations for Compute](https://techpro.hpe.com/learningPath.aspx?family=CFC)** (8/8)❌
+### **[Cloud Foundations for Compute](https://techpro.hpe.com/learningPath.aspx?family=CFC)** (8/8)✅
 
 #### Awarness
 
@@ -64,7 +64,7 @@
 
 #### Examen
 
-- [Examen](https://certification-learning.hpe.com/tr/datacard/Exam/HPE3-CL17)
+- [Examen](https://certification-learning.hpe.com/tr/datacard/Exam/HPE3-CL17)✅
 
 ## Examen Proctored
 
